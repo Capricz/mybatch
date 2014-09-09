@@ -1,9 +1,12 @@
 package com.zliang.mybatch;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +15,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:application.xml","classpath:batch.xml","classpath:test-context.xml"})
+@ContextConfiguration(locations = { 
+		"classpath:application.xml",
+		"classpath:batch.xml",
+		"classpath:test-context.xml"})
 public class MyBatchTest {
+	
+	private static final Logger log = LoggerFactory.getLogger(MyBatchTest.class);
 
 	@Autowired
 	private JobLauncherTestUtils jobLauncherTestUtils;
@@ -22,6 +30,7 @@ public class MyBatchTest {
 
 	@Test
 	public void testJob() throws Exception {
+		log.trace("This is method : {}","testJob");
 //		simpleJdbcTemplate.update("delete from CUSTOMER");
 //		for (int i = 1; i <= 10; i++) {
 //			simpleJdbcTemplate.update(
@@ -33,7 +42,7 @@ public class MyBatchTest {
 //		Assert.assertEquals("COMPLETED", jobExecution.getExitStatus());
 		
 		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
+		assertEquals(BatchStatus.COMPLETED, jobExecution.getExitStatus().getExitCode());
 		
 	}
 }
