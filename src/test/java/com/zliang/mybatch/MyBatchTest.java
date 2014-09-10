@@ -27,7 +27,7 @@ public class MyBatchTest {
 
 	@Test
 	public void testJob() throws Exception {
-		log.trace("This is method : {}","testJob");
+		log.trace("in {} method","testJob");
 //		simpleJdbcTemplate.update("delete from CUSTOMER");
 //		for (int i = 1; i <= 10; i++) {
 //			simpleJdbcTemplate.update(
@@ -39,7 +39,13 @@ public class MyBatchTest {
 //		Assert.assertEquals("COMPLETED", jobExecution.getExitStatus());
 		
 		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		assertEquals(BatchStatus.COMPLETED, jobExecution.getExitStatus().getExitCode());
-		
+		assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
+	}
+	
+	@Test
+	public void testStep() throws Exception{
+		log.trace("in {} method","testSetp");
+		JobExecution stepExecution = jobLauncherTestUtils.launchStep("step_hello");
+		assertEquals(BatchStatus.COMPLETED,stepExecution.getStatus());
 	}
 }
