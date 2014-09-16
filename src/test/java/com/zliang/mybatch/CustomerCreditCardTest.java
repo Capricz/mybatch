@@ -16,15 +16,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { 
 		"classpath:application.xml",
-		"classpath:CustomerCreditCardJob.xml",
+		"classpath:batch.xml",
 		"classpath:test-context.xml"})
-public class MyBatchTest {
+public class CustomerCreditCardTest {
 	
-	private static final Logger log = LoggerFactory.getLogger(MyBatchTest.class);
+	private static final Logger log = LoggerFactory.getLogger(CustomerCreditCardTest.class);
 
 	@Autowired
 	private JobLauncherTestUtils jobLauncherTestUtils;
-	
+
 	@Test
 	public void testJob() throws Exception {
 		log.trace("in {} method","testJob");
