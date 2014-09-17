@@ -1,4 +1,4 @@
-package com.zliang.mybatch.sample.model;
+package com.zliang.mybatch.model;
 
 import java.io.Serializable;
 

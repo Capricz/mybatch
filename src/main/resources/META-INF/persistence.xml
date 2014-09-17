@@ -4,7 +4,7 @@
     version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">	
 	<persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>com.zliang.mybatch.sample.model.Customer</class>
+		<class>com.zliang.mybatch.model.Customer</class>
 		<!-- <property name="hibernateProperties">
 		        <props>
 		            <prop key="hbm2ddl.auto">create</prop>

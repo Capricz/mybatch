@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import com.zliang.mybatch.sample.model.Customer;
+import com.zliang.mybatch.model.Customer;
 
 @Repository
 public class CustomerDao {

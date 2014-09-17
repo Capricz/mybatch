@@ -15,7 +15,7 @@ http://www.springframework.org/schema/batch
 http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
     <bean:import resource="application.xml"/>
-
+    
     <job id="helloWorldJob">
         <step id="step_hello" next="step_world">
             <tasklet ref="hello" transaction-manager="transactionManager"></tasklet>
