@@ -5,6 +5,7 @@
 	<persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.zliang.mybatch.model.Customer</class>
+		<class>com.zliang.mybatch.model.CustomerA</class>
 		<!-- <property name="hibernateProperties">
 		        <props>
 		            <prop key="hbm2ddl.auto">create</prop>

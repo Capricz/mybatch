@@ -1,21 +1,24 @@
 package com.zliang.mybatch.simplestep;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.batch.item.ItemProcessor;
 
 import com.zliang.mybatch.model.Customer;
+import com.zliang.mybatch.model.CustomerA;
 
-public class CustomerProcessor implements ItemProcessor<Customer,Customer> {
+public class CustomerProcessor implements ItemProcessor<Customer,CustomerA> {
 
 	@Override
-	public Customer process(Customer customer) throws Exception {
-		Customer result = new Customer(); 
-		result.setId(customer.getId());
-		result.setName(customer.getId()+"##"+customer.getName());
-		result.setCredit(customer.getCredit());
-		return result;
+	public CustomerA process(Customer cust) throws Exception {
+		System.out.println("In CustomerProcessor process(Customer customer)...");
+//		List<CustomerA> result = new ArrayList<CustomerA>();
+//		for (Customer cust : customers) {
+			CustomerA res = new CustomerA(); 
+			res.setId(cust.getId());
+			res.setName(cust.getId()+"##"+cust.getName());
+			res.setCredit(cust.getCredit());
+//			result.add(res);
+//		}
+		return res;
 	}
 
 }

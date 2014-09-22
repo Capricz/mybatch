@@ -4,15 +4,25 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+	<beans:import resource="../application.xml"/>
+	
 	<job id="transferCustomerJob">
 		<step id="step1">
 			<tasklet>
-				<chunk reader="customerReader" processor="customerProcessor" writer="customerWriter"/>
+				<chunk reader="customerReader" processor="customerProcessor" writer="customerWriter" commit-interval="1"/>
 			</tasklet>
 		</step>
 	</job>
 	
-	<beans:bean id="customerReader" class="com.zliang.mybatch.simplestep.CustomerReader"/>
+	<beans:bean id="customerReader" class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="sql" value="select * from customer"/>
+		<beans:property name="rowMapper">
+			<beans:bean class="com.zliang.mybatch.sample.CustomerCreditRowMapper"/>
+		</beans:property>
+	</beans:bean>
 	<beans:bean id="customerProcessor" class="com.zliang.mybatch.simplestep.CustomerProcessor"/>
 	<beans:bean id="customerWriter" class="com.zliang.mybatch.simplestep.CustomerWriter"/>
+	
+	<!-- <beans:bean id="customerCreditRowMapper" class="com.zliang.mybatch.sample.CustomerCreditRowMapper"></beans:bean> -->
 </beans:beans>
