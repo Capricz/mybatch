@@ -7,15 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="CUSTOMER_A")
 public class CustomerA implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 572489469848977035L;
+
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="CustomerA_Gen",sequenceName="CUSTOMERA_SEQ")
+	@GeneratedValue(generator="CustomerA_Gen")
 	private Integer id;
 	
 	@Column(name="NAME")
